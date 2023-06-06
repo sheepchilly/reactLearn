@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 1.引入react核心库 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- 2.引入react-dom，用于支持react操作DOM -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- 3.引入babel，用于将jsx转为js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel"> /* 此处一定要写babel */
+        //1.创建组件
+        class Weather extends React.Component{
+            constructor(props){
+                super(props)
+                //state有很多个变量就写成对象
+                this.state = {isHot:false,wind:'微风'}
+            }
+            render(){
+                console.log(this)
+                const {isHot} = this.state
+                //1.如果{}里写的是{demo()} - 把demo的返回值赋值给了onClick作为回调
+                //2.如果{}里写的是{demo} - 把demo函数交给onclick作为回调
+                return <h1 onClick={demo}>今天天气很{isHot?'炎热':'凉爽'}</h1>
+            }
+        }
+        ReactDOM.render(<Weather/>,document.getElementById('test'))
+
+        function demo(){
+            console.log('标题被点击了')
+        }
+        
+    </script>
+    
+</body>
+</html>
